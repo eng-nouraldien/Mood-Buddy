@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار التوتر - RahayMind</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f0f8ff; }
+        .container { max-width: 600px; margin: auto; }
+        .question { margin-bottom: 20px; }
+        button { padding: 10px 20px; background-color: #00b4d8; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0077b6; }
+        #stress-result { margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>اختبار التوتر</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="container">
+    <h2>اختر إجابتك على كل سؤال:</h2>
+
+    <div class="question">
+        <p>1- هل تشعر بالتوتر أثناء الدراسة؟</p>
+        <input type="radio" name="q1" value="1"> قليل
+        <input type="radio" name="q1" value="2"> متوسط
+        <input type="radio" name="q1" value="3"> كثير
+    </div>
+
+    <div class="question">
+        <p>2- هل تجد صعوبة في النوم بسبب القلق؟</p>
+        <input type="radio" name="q2" value="1"> قليل
+        <input type="radio" name="q2" value="2"> متوسط
+        <input type="radio" name="q2" value="3"> كثير
+    </div>
+
+    <div class="question">
+        <p>3- هل تشعر بالإرهاق الذهني بسهولة؟</p>
+        <input type="radio" name="q3" value="1"> قليل
+        <input type="radio" name="q3" value="2"> متوسط
+        <input type="radio" name="q3" value="3"> كثير
+    </div>
+
+    <button id="calculate-btn">عرض النتيجة</button>
+    <p id="stress-result"></p>
+</section>
+
+<script>
+document.getElementById('calculate-btn').addEventListener('click', function() {
+    let values = [];
+    let unanswered = false;
+
+    for (let i = 1; i <= 3; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!selected) {
+            unanswered = true;
+            break;
+        }
+        values.push(parseInt(selected.value));
+    }
+
+    const resultEl = document.getElementById('stress-result');
+    if (unanswered) {
+        resultEl.textContent = "يرجى الإجابة على جميع الأسئلة أولاً!";
+        resultEl.style.color = "red";
+        return;
+    }
+
+    // نوجد أعلى قيمة تم اختيارها
+    const maxValue = Math.max(...values);
+
+    let resultText = '';
+    if(maxValue === 1) resultText = "توتر منخفض 😌";
+    else if(maxValue === 2) resultText = "توتر متوسط 😐";
+    else resultText = "توتر مرتفع 😣";
+
+    resultEl.textContent = resultText;
+    resultEl.style.color = "green";
+});
+</script>
+
+</body>
+</html>

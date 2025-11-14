@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>جدار المشاعر - RahayMind</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function showMessage() {
+            const mood = document.getElementById('mood-select').value;
+            let message = '';
+            if (mood === 'happy') message = 'رائع! حافظ على إيجابيتك 😊';
+            else if (mood === 'sad') message = 'لا بأس أن تحزن أحيانًا، خذ وقتك 💙';
+            else if (mood === 'stressed') message = 'استرح قليلًا ومارس التنفس العميق 😌';
+            else if (mood === 'angry') message = 'حاول تهدئة نفسك وابتعد عن الضغوط 🔵';
+            else message = '';
+            document.getElementById('mood-message').innerText = message;
+        }
+    </script>
+    <style>
+        .mood-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #caf0f8;
+            border-radius: 10px;
+            text-align: center;
+        }
+        select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        #mood-message {
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>جدار المشاعر</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="container mood-container">
+    <p>اختر شعورك اليومي:</p>
+    <select id="mood-select" onchange="showMessage()">
+        <option value="">-- اختر شعورك --</option>
+        <option value="happy">سعيد</option>
+        <option value="sad">حزين</option>
+        <option value="stressed">متوتر</option>
+        <option value="angry">غاضب</option>
+    </select>
+    <p id="mood-message"></p>
+</section>
+</body>
+</html>
